@@ -13,25 +13,18 @@ class HomeHeader extends React.Component {
     }
     render() {
         return (
-            <div id="home-header" className="clear-fix">
-                <div className="home-header-left float-left">
-                    <Link to="/city">
-                        <span>{this.props.cityName}</span>
-                        &nbsp;
-                        <i className="icon-angle-down"></i>
-                    </Link>
+            <div className="top">
+                <div className="left">
+                    <i className="icon_left"></i>
+                    城市
                 </div>
-                <div className="home-header-right float-right">
-                    <Link to="/Login">
-                        <i className="icon-user"></i>
-                    </Link>
+                <div className="search">
+                    <i className="search_icon"></i>
+                    <input type="text" placeholder="请输入要搜索的内容"/>
                 </div>
-                <div className="home-header-middle">
-                    <div className="search-container">
-                        <i className="icon-search"></i>
-                        &nbsp;
-                        <SearchInput value="" enterHandle={this.enterHandle.bind(this)}/>
-                    </div>
+                <div className="rignt">
+                    <i className="icon_right"></i>
+                    用户
                 </div>
             </div>
         )
