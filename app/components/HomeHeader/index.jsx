@@ -14,18 +14,15 @@ class HomeHeader extends React.Component {
     render() {
         return (
             <div className="top">
-                <div className="left">
-                    <i className="icon_left"></i>
+                <a href="#" className="city">
                     城市
-                </div>
+                    <i className="city_icon"></i>
+                </a>
                 <div className="search">
+                    <input type="text" placeholder="请输入要搜索内容"/>
                     <i className="search_icon"></i>
-                    <input type="text" placeholder="请输入要搜索的内容"/>
                 </div>
-                <div className="rignt">
-                    <i className="icon_right"></i>
-                    用户
-                </div>
+                <a href="#" className="user">用户</a>
             </div>
         )
     }
