@@ -12,9 +12,9 @@ class Header extends React.Component {
     render() {
         return (
             <div id="common-header">
-                <span className="back-icon" onClick={this.clickHandle.bind(this)}>
+                <a href="#" className="back-icon" onClick={this.clickHandle.bind(this)}>
                     <i className="icon-chevron-left"></i>
-                </span>
+                </a>
                 <h1>{this.props.title}</h1>
             </div>
         )

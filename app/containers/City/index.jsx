@@ -46,18 +46,18 @@ class City extends React.Component {
 
 // -------------------redux react 绑定--------------------
 
-function mapStateToProps(state) {
+  function mapStateToProps(state) {
     return {
-        userinfo: state.userinfo
+      userinfo: state.userinfo
     }
-}
+  }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch)
-    }
+  return {
+    userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch)
+  }
 }
 export default connect(
-    mapStateToProps,
+  mapStateToProps,
     mapDispatchToProps
 )(City)

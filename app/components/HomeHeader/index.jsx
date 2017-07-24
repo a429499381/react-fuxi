@@ -15,14 +15,18 @@ class HomeHeader extends React.Component {
         return (
             <div className="top">
                 <Link to="/city">
-                    <a href="#" className="city">城市</a>
-                    <i className="top_city"></i>
+                    <a href="#" className="city">
+                      {this.props.cityName}
+                    </a>
+
                 </Link>
                 <div className="search">
                     <input type="text" placeholder="请输入要搜索内容"/>
                     <i className="search_icon"></i>
                 </div>
-                <a href="#" className="user">用户</a>
+                <Link to="/Login">
+                  <a href="#" className="user">用户</a>
+                </Link>
             </div>
         )
     }
