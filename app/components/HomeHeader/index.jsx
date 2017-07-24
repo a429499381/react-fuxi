@@ -22,7 +22,7 @@ class HomeHeader extends React.Component {
                 </Link>
                 <div className="search">
                     <input type="text" placeholder="请输入要搜索内容"/>
-                    <i className="search_icon"></i>
+                    <i className="search_icon"> </i>
                 </div>
                 <Link to="/Login">
                   <a href="#" className="user">用户</a>
