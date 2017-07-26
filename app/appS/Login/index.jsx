@@ -11,7 +11,7 @@ import localStore from '../../util/localStore'
 
 import './sub/style.less'
 
-class User extends React.Component {
+class Login extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
@@ -19,14 +19,15 @@ class User extends React.Component {
     render() {
         return (
             <div>
-                <h1>用户界面</h1>
+                <a href="javascript:;" className="back" onClick={this.back.bind(this)}>返回</a>
+                <h1>登陆</h1>
+
             </div>
         )
     }
-    componentDidMount() {
-        if (!this.props.userinfo.username) {
-            hashHistory.push('/Login')
-        }
+
+    back() {
+        hashHistory.push('/')
     }
 
 }
@@ -47,4 +48,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(User)
+)(Login)
