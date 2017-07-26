@@ -41,7 +41,7 @@ class Login extends React.Component {
             username: e.target.value
         })
         let userinfo = this.props.userinfo
-        userinfo.username = username
+        userinfo.username = this.state.username
         this.props.userInfoActions.update(userinfo)
     }
 
