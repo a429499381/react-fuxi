@@ -19,16 +19,20 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <a href="javascript:;" className="back" onClick={this.back.bind(this)}>返回</a>
+                <a href="#" className="back">返回</a>
                 <h1>登陆</h1>
-
+                <div className="user_login">
+                    <span className="user_name">用户名</span>
+                    <input type="text" className="userName"/>
+                    <span className="user_pass">密码</span>
+                    <input type="password" className="userPass"/>
+                    <a href="javascript:;" className="login_btn">登陆</a>
+                </div>
             </div>
         )
     }
 
-    back() {
-        hashHistory.push('/')
-    }
+
 
 }
 
