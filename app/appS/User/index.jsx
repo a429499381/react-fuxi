@@ -20,6 +20,13 @@ class User extends React.Component {
         return (
             <div>
                 <h1>用户界面</h1>
+                <p className="cityname">
+                    {this.props.userinfo.cityName}
+                </p>
+                <p className="username">
+                    {this.props.userinfo.username}
+                </p>
+
             </div>
         )
     }
