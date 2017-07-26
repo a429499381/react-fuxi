@@ -21,10 +21,10 @@ class User extends React.Component {
             <div>
                 <h1>用户界面</h1>
                 <p className="cityname">
-                    {this.props.userinfo.cityName}
+                    {this.state.cityname}
                 </p>
                 <p className="username">
-                    {this.props.userinfo.username}
+                    {this.state.username}
                 </p>
 
             </div>
@@ -33,7 +33,15 @@ class User extends React.Component {
     componentDidMount() {
         if (!this.props.userinfo.username) {
             hashHistory.push('/Login')
+        } else {
+            let username = localStore.getItem('username')
+            let cityname = localStore.getItem('USER_CURRENT_CITY_NAME')
+            this.setState = {
+                username: username,
+                cityname: cityname
+            }
         }
+
     }
 
 }
