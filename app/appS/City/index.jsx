@@ -19,29 +19,44 @@ class City extends React.Component {
     render() {
         return (
             <div>
+                <div className="top">
+                    <h1>{this.props.userinfo.cityName}</h1>
+                </div>
                 <div className="click_cityName">
-                    <a href="#" onClick={this.changeCity.bind(this, '武汉')}>武汉</a>
-                    <a href="#" onClick={this.changeCity.bind(this, '上海')}>上海</a>
-                    <a href="#" onClick={this.changeCity.bind(this, '天津')}>天津</a>
-                    <a href="#" onClick={this.changeCity.bind(this, '北京')}>北京</a>
+                    <a href="#" onClick={this.gCity.bind(this, '武汉')}>武汉</a>
+                    <a href="#" onClick={this.gCity.bind(this, '上海')}>上海</a>
+                    <a href="#" onClick={this.gCity.bind(this, '天津')}>天津</a>
+                    <a href="#" onClick={this.gCity.bind(this, '北京')}>北京</a>
                 </div>
             </div>
         )
     }
-    changeCity(newCity) {
-        if (newCity == null) {
-            return
-        }
-        // 修改 redux
+    // changeCity(newCity) {
+    //     if (newCity == null) {
+    //         return
+    //     }
+    //     // 修改 redux
+    //     const userinfo = this.props.userinfo
+    //     userinfo.cityName = newCity
+    //     this.props.userInfoActions.update(userinfo)
+    //
+    //     // 修改 cookie
+    //     localStore.setItem(CITYNAME, newCity)
+    //
+    //     // 跳转页面
+    //     hashHistory.push('/')
+    // }
+
+
+    gCity(newCity) {
         const userinfo = this.props.userinfo
         userinfo.cityName = newCity
+
         this.props.userInfoActions.update(userinfo)
 
         // 修改 cookie
         localStore.setItem(CITYNAME, newCity)
 
-        // 跳转页面
-        hashHistory.push('/')
     }
 }
 
