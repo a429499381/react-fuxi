@@ -43,12 +43,13 @@ class Login extends React.Component {
         let userinfo = this.props.userinfo
         userinfo.username = this.state.username
         this.props.userInfoActions.update(userinfo)
+
     }
 
     login() {
         if (this.state.username) {
             hashHistory.push('/User')
-            console.log(this.state.username)
+            localStore.setItem(username, this.state.username)
         } else {
             hashHistory.push('/Login')
             console.log("go Login")
