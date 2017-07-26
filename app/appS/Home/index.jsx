@@ -15,8 +15,8 @@ class Home extends React.Component {
         return (
             <div>
                 <div className="top">
-                    <Link to="/city">
-                    <a href="#" className="cityName">{this.props.userinfo.cityName}</a>
+                    <Link to="/City">
+                        <a href="#" className="cityName">{this.props.userinfo.cityName}</a>
                     </Link>
                     <div className="search">
                         <input type="text" placeholder="请输入要搜索的内容"/>
