@@ -49,7 +49,7 @@ class Login extends React.Component {
     login() {
         if (this.state.username) {
             hashHistory.push('/User')
-            localStore.setItem(username, this.state.username)
+            localStore.setItem('username', this.state.username)
         } else {
             hashHistory.push('/Login')
             console.log("go Login")
