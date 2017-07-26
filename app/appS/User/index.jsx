@@ -15,6 +15,10 @@ class User extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.state = {
+            username: '',
+            cityname: '',
+        }
     }
     render() {
         return (
@@ -31,16 +35,19 @@ class User extends React.Component {
         )
     }
     componentDidMount() {
-        if (!this.props.userinfo.username) {
+        this.setState ({
+            username: localStore.getItem('username'),
+            cityname: localStore.getItem('USER_CURRENT_CITY_NAME')
+        })
+
+        console.log("username" + this.state.username)
+
+
+        if (!this.state.username) {
             hashHistory.push('/Login')
-        } else {
-            let username = localStore.getItem('username')
-            let cityname = localStore.getItem('USER_CURRENT_CITY_NAME')
-            this.setState = {
-                username: username,
-                cityname: cityname
-            }
         }
+
+
 
     }
 
