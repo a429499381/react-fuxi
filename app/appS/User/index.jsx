@@ -15,35 +15,32 @@ class User extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-        this.state = {
-            username: '',
-            cityname: '',
-        }
     }
     render() {
         return (
             <div>
                 <h1>用户界面</h1>
                 <p className="cityname">
-                    {this.state.cityname}
+                    {this.props.userinfo.cityName}
                 </p>
                 <p className="username">
-                    {this.state.username}
+                    {this.props.userinfo.username}
                 </p>
 
             </div>
         )
     }
     componentDidMount() {
-        this.setState ({
-            username: localStore.getItem('username'),
-            cityname: localStore.getItem('USER_CURRENT_CITY_NAME')
-        })
 
-        console.log("username" + this.state.username)
+           let username = localStore.getItem('username')
+           let cityname = localStore.getItem('USER_CURRENT_CITY_NAME')
+        let userinfo = this.props.userinfo
+        userinfo.username = username
+        this.props.userInfoActions.update(userinfo)
 
 
-        if (!this.state.username) {
+
+        if (!this.props.userinfo.username) {
             hashHistory.push('/Login')
         }
 

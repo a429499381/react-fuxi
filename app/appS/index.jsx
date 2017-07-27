@@ -27,7 +27,6 @@ class App extends React.Component {
     }
     componentDidMount() {
 
-        console.log(this.props.children)
         // 获取位置信息
         let cityName = LocalStore.getItem(CITYNAME)
         if (cityName == null) {
