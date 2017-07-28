@@ -10,6 +10,9 @@ class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.state = {
+            vale: ''
+        }
     }
     render() {
         return (
@@ -19,7 +22,11 @@ class Home extends React.Component {
                         <a href="#" className="cityName">{this.props.userinfo.cityName}</a>
                     </Link>
                     <div className="search">
-                        <input type="text" placeholder="请输入要搜索的内容"/>
+                        <input type="text" placeholder="请输入要搜索的内容"
+                               onChange={this.onChange.bind(this)}
+                               onKeyUp={this.onKeup.bind(this)}
+                               value={this.state.value}
+                        />
                     </div>
                     <Link to="/user">
                         <a href="#" className="user">用户</a>
@@ -28,6 +35,24 @@ class Home extends React.Component {
             </div>
         )
     }
+    componentDidMount() {
+        this.setState({
+            value: e.target.value || ''
+        })
+    }
+    onChange(e) {
+        let value = e.target.value
+        this.setState({
+            value: value
+        })
+    }
+    onKeup(e) {
+        if (e.target.value == 13) {
+            this.enterHandle(e.target.value)
+        }
+
+    }
+
 }
 
 // -------------------redux react 绑定--------------------

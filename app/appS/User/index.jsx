@@ -32,8 +32,8 @@ class User extends React.Component {
     }
     componentDidMount() {
 
-           let username = localStore.getItem('username')
-           let cityname = localStore.getItem('USER_CURRENT_CITY_NAME')
+        let username = localStore.getItem('username')
+        let cityname = localStore.getItem('CITYNAME')
         let userinfo = this.props.userinfo
         userinfo.username = username
         this.props.userInfoActions.update(userinfo)
