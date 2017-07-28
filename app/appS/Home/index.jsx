@@ -24,7 +24,8 @@ class Home extends React.Component {
                     <div className="search">
                         <input type="text" placeholder="请输入要搜索的内容"
                                onChange={this.onChange.bind(this)}
-                               onKeyUp={this.onKeup.bind(this)}
+                               onKeyUp={this.KeyUpHandle.bind(this)}
+                               onClick={this.enterHandle.bind(this)}
                                value={this.state.value}
                         />
                     </div>
@@ -35,7 +36,7 @@ class Home extends React.Component {
             </div>
         )
     }
-    componentDidMount() {
+    componentDidMount(e) {
         this.setState({
             value: e.target.value || ''
         })
@@ -46,12 +47,18 @@ class Home extends React.Component {
             value: value
         })
     }
-    onKeup(e) {
-        if (e.target.value == 13) {
-            this.enterHandle(e.target.value)
+    KeyUpHandle(e) {
+        // 监控 enter 事件
+        if (e.keyCode !== 13) {
+            return
         }
+        this.props.enterHandle(e.target.value)
+    }
+    enterHandle() {
 
     }
+
+
 
 }
 
