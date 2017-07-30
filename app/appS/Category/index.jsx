@@ -32,7 +32,7 @@ class Category extends React.Component {
                     <div><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p></div>
                 </RectSwiper>
                 <div className="index">
-                    {this.state.index + 1}
+                    {this.state.index }
                 </div>
             </div>
 
