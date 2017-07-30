@@ -12,6 +12,9 @@ class Category extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.state = {
+            index: ''
+        }
     }
     render() {
         const opt = {
@@ -24,12 +27,12 @@ class Category extends React.Component {
         return (
             <div>
                 <RectSwiper className="swiper_box" swipeOptions={opt}>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
+                    <div><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p></div>
+                    <div><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p></div>
+                    <div><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p><p>火锅</p></div>
                 </RectSwiper>
                 <div className="index">
-                    {this.state.index + 1 }
+                    {this.state.index + 1}
                 </div>
             </div>
 
