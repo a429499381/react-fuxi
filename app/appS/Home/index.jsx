@@ -33,14 +33,13 @@ class Home extends React.Component {
             </div>
         )
     }
-
 }
 
 // -------------------redux react 绑定--------------------
 
 function mapStateToProps(state) {
     return {
-        userinfo: state.use
+        userinfo: state.userinfo
     }
 }
 

@@ -43,6 +43,7 @@ class Search extends React.Component {
         }
         let code = encodeURIComponent(e.target.value)
         hashHistory.push(/search/ + encodeURI(e.target.value))
+        console.log(code)
 
     }
 
