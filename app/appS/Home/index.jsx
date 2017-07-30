@@ -8,6 +8,7 @@ import './sub/style.less'
 
 import Search from '../Search/index'
 import Category from '../Category/index'
+import Ad from '../Ad/index'
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -32,6 +33,7 @@ class Home extends React.Component {
                     </Link>
                 </div>
                 <Category/>
+                <Ad/>
             </div>
         )
     }
