@@ -7,6 +7,7 @@ import { Link, hashHistory } from 'react-router'
 import './sub/style.less'
 
 import Search from '../Search/index'
+import Category from '../Category/index'
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -30,6 +31,7 @@ class Home extends React.Component {
                         <a href="#" className="user">用户</a>
                     </Link>
                 </div>
+                <Category/>
             </div>
         )
     }
