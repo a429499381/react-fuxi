@@ -22,11 +22,17 @@ class Category extends React.Component {
             }.bind(this)
         }
         return (
-           <RectSwiper className="swiper_box" swipeOptions={opt}>
-               <div>1</div>
-               <div>2</div>
-               <div>3</div>
-           </RectSwiper>
+            <div>
+                <RectSwiper className="swiper_box" swipeOptions={opt}>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </RectSwiper>
+                <div className="index">
+                    {this.state.index + 1 }
+                </div>
+            </div>
+
         )
     }
 
