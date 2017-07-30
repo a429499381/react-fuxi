@@ -6,6 +6,8 @@ import { Link, hashHistory } from 'react-router'
 
 import './sub/style.less'
 
+import Search from '../Search/index'
+
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -22,12 +24,7 @@ class Home extends React.Component {
                         <a href="#" className="cityName">{this.props.userinfo.cityName}</a>
                     </Link>
                     <div className="search">
-                        <input type="text" placeholder="请输入要搜索的内容"
-                               onChange={this.onChange.bind(this)}
-                               onKeyUp={this.KeyUpHandle.bind(this)}
-                               onClick={this.enterHandle.bind(this)}
-                               value={this.state.value}
-                        />
+                        <Search/>
                     </div>
                     <Link to="/user">
                         <a href="#" className="user">用户</a>
@@ -36,29 +33,6 @@ class Home extends React.Component {
             </div>
         )
     }
-    componentDidMount(e) {
-        this.setState({
-            value: e.target.value || ''
-        })
-    }
-    onChange(e) {
-        let value = e.target.value
-        this.setState({
-            value: value
-        })
-    }
-    KeyUpHandle(e) {
-        // 监控 enter 事件
-        if (e.keyCode !== 13) {
-            return
-        }
-        this.props.enterHandle(e.target.value)
-    }
-    enterHandle() {
-
-    }
-
-
 
 }
 
@@ -66,7 +40,7 @@ class Home extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userinfo: state.userinfo
+        userinfo: state.use
     }
 }
 
