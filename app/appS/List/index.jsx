@@ -13,7 +13,8 @@ class List extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
             data: [],
-            hasMore: false
+            hasMore: false,
+            page: 0
         }
 
     }
@@ -36,7 +37,7 @@ class List extends React.Component {
                 }
                 {
                     this.state.hasMore
-                    ? <div>more</div>
+                    ? <a href="javascript:;"  onClick={this.clickHandle01.bind(this)}>more</a>
                     : <div>no more</div>
                 }
             </div>
@@ -44,10 +45,29 @@ class List extends React.Component {
         )
     }
 
+    clickHandle01() {
+        this.setState({
+            hasMore: true
+        })
+        const cityName = this.props.cityName
+        const page = this.state.page + 1
+
+        const result = getListData(cityName, page)
+        result.then(res => {
+            return res.json()
+        }).then( json => {
+            this.setState({
+                hasMore: json.hasMore,
+                data: this.state.data.concat(json.data)
+            })
+        })
+
+    }
+
     componentDidMount() {
         const cityName = this.props.cityName
-        const num = 0
-        const result = getListData(cityName, num)
+        const page = this.state.page
+        const result = getListData(cityName, page)
         result.then(res => {
             return res.json()
         }).then(json => {
