@@ -21,7 +21,7 @@ class List extends React.Component {
     render() {
         const data = this.state.data
         return (
-            <div>
+            <div ref="wrapper">
                 {
                     this.state.data.length
                     ? data.map((item, index) => {
@@ -37,7 +37,7 @@ class List extends React.Component {
                 }
                 {
                     this.state.hasMore
-                    ? <div ref="wrapper">
+                    ? <div >
                         <a href="javascript:;"   onClick={this.clickHandle01.bind(this)}>more</a>
                     </div>
                     : <div>no more</div>
@@ -51,8 +51,8 @@ class List extends React.Component {
         this.setState({
             hasMore: true
         })
-        let cityName = this.props.cityName
-        let page = this.state.page + 1
+        const cityName = this.props.cityName
+        const page = this.state.page
 
         const result = getListData(cityName, page)
         result.then(res => {
@@ -60,7 +60,8 @@ class List extends React.Component {
         }).then( json => {
             this.setState({
                 hasMore: json.hasMore,
-                data: this.state.data.concat(json.data)
+                data: this.state.data.concat(json.data),
+                page: page + 1
             })
         })
 
@@ -82,28 +83,45 @@ class List extends React.Component {
     }
 
     componentDidMount() {
+      const more = this.clickHandle01()
       this.loadData()
-
       const wrapper = this.refs.wrapper
       let timeoutId
       function callback() {
-        const top = wrapper.getBoundingClientRect().top
+        const top = wrapper.getBoundingClientRect().bottom
         const windowHeight = window.screen.height
-        if (top && top < windowHeight) {
-          // 证明 wrapper 已经被滚动到暴露在页面可视范围之内了
-          loadMoreFn()
+        console.log(top, windowHeight)
+        if (top && top === windowHeight) {
+          console.log('more')
+
+          this.setState({
+            hasMore: true
+          })
+          const cityName = this.props.cityName
+          const page = this.state.page
+
+          const result = getListData(cityName, page)
+          result.then(res => {
+            return res.json()
+          }).then( json => {
+            this.setState({
+              hasMore: json.hasMore,
+              data: this.state.data.concat(json.data),
+              page: page + 1
+            })
+          })
         }
       }
+
       window.addEventListener('scroll', function () {
-        if (this.props.isLoadingMore) {
-          return
-        }
         if (timeoutId) {
           clearTimeout(timeoutId)
         }
+
         timeoutId = setTimeout(callback, 50)
-      }.bind(this), false);
+      }.bind(this), false)
     }
+
 
 
 
