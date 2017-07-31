@@ -9,6 +9,7 @@ import './sub/style.less'
 import Search from '../Search/index'
 import Category from '../Category/index'
 import Ad from '../Ad/index'
+import List from '../List/index'
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -34,6 +35,7 @@ class Home extends React.Component {
                 </div>
                 <Category/>
                 <Ad/>
+                <List cityName={this.props.userinfo.cityName}/>
             </div>
         )
     }
