@@ -18,10 +18,22 @@ class List extends React.Component {
 
     }
     render() {
+        const data = this.state.data
         return (
             <div>
                 {
                     this.state.data.length
+                    ? <div className="lists">
+                        data.map((item, index) => {
+                            <div className="item" id={item.id}>
+                                <img src={item.img}/>
+                            <div className='item_txt'>
+
+                            </div>
+                            </div>
+                        })
+                        </div>
+                    : <div>数据加载中。。。</div>
                 }
                 {
                     this.state.hasMore
