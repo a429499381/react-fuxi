@@ -37,7 +37,9 @@ class List extends React.Component {
                 }
                 {
                     this.state.hasMore
-                    ? <a href="javascript:;"  onClick={this.clickHandle01.bind(this)}>more</a>
+                    ? <div ref="wrapper">
+                        <a href="javascript:;"   onClick={this.clickHandle01.bind(this)}>more</a>
+                    </div>
                     : <div>no more</div>
                 }
             </div>
@@ -49,8 +51,8 @@ class List extends React.Component {
         this.setState({
             hasMore: true
         })
-        const cityName = this.props.cityName
-        const page = this.state.page + 1
+        let cityName = this.props.cityName
+        let page = this.state.page + 1
 
         const result = getListData(cityName, page)
         result.then(res => {
@@ -64,19 +66,45 @@ class List extends React.Component {
 
     }
 
-    componentDidMount() {
-        const cityName = this.props.cityName
-        const page = this.state.page
-        const result = getListData(cityName, page)
-        result.then(res => {
-            return res.json()
-        }).then(json => {
-            const hasMore = json.hasMore
-            const data = json.data
-            this.setState({ hasMore: hasMore})
-            data.length ? this.setState({data: data}) : 'no'
-        })
+    loadData() {
+      let cityName = this.props.cityName
+      let page = this.state.page
+      let result = getListData(cityName, page)
+      result.then(res => {
+        return res.json()
+      }).then(json => {
+        const hasMore = json.hasMore
+        const data = json.data
+        this.setState({ hasMore: hasMore})
+        data.length ? this.setState({data: data}) : 'no'
+      })
+
     }
+
+    componentDidMount() {
+      this.loadData()
+
+      const wrapper = this.refs.wrapper
+      let timeoutId
+      function callback() {
+        const top = wrapper.getBoundingClientRect().top
+        const windowHeight = window.screen.height
+        if (top && top < windowHeight) {
+          // 证明 wrapper 已经被滚动到暴露在页面可视范围之内了
+          loadMoreFn()
+        }
+      }
+      window.addEventListener('scroll', function () {
+        if (this.props.isLoadingMore) {
+          return
+        }
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
+        timeoutId = setTimeout(callback, 50)
+      }.bind(this), false);
+    }
+
 
 
 
