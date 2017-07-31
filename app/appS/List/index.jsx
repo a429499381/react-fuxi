@@ -23,16 +23,15 @@ class List extends React.Component {
             <div>
                 {
                     this.state.data.length
-                    ? <div className="lists">
-                        data.map((item, index) => {
-                            <div className="item" id={item.id}>
-                                <img src={item.img}/>
-                            <div className='item_txt'>
-
-                            </div>
-                            </div>
-                        })
-                        </div>
+                    ? data.map((item, index) => {
+                        return (
+                                <div className={index} id={item.id} key={index}>
+                                    <img src={item.img} alt="" className="item_img"/>
+                                    <h3>{item.title}</h3>
+                                    <p className="item_subtxt">{item.subTitle}</p>
+                                    <p className="itemprice">{item.price}</p>
+                                </div>
+                        )})
                     : <div>数据加载中。。。</div>
                 }
                 {
