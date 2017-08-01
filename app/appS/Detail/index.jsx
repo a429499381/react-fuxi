@@ -5,26 +5,28 @@ import { connect } from 'react-redux'
 import { Link, hashHistory } from 'react-router'
 
 import './sub/style.less'
-
-import Input from '../input/index'
-import Category from '../Category/index'
-import Ad from '../Ad/index'
-import List from '../List/index'
+import {getCommentData, getInfoData} from "../../fetch/detail/detai"
 
 class Detail extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
-            vale: ''
+           id: this.props.params.id,
+           info: [],
+           comData: []
         }
     }
     render() {
         return (
             <div>
-                {this.props.params.id}
+                {this.state.id}
             </div>
         )
+    }
+    componentDidMount() {
+        let id = this.state.id
+        getInfoData(id)
     }
 }
 
