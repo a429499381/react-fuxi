@@ -6,6 +6,7 @@ import {Link, hashHistory } from 'react-router'
 
 import './sub/style.less'
 import {getListData} from "../../fetch/home/home";
+import Item from '../item/index'
 
 class List extends React.Component {
     constructor(props, context) {
@@ -28,12 +29,7 @@ class List extends React.Component {
                     this.state.data.length
                     ? data.map((item, index) => {
                         return (
-                                <div className={index} id={item.id} key={index}>
-                                    <img src={item.img} alt="" className="item_img"/>
-                                    <h3>{item.title}</h3>
-                                    <p className="item_subtxt">{item.subTitle}</p>
-                                    <p className="itemprice">{item.price}</p>
-                                </div>
+                                <Item data={item} key={index}/>
                         )})
                     : <div>数据加载中。。。</div>
                 }
