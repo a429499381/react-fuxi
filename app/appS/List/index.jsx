@@ -83,7 +83,10 @@ class List extends React.Component {
     }
 
     componentDidMount() {
+      const that = this
       const more = this.clickHandle01()
+      const cityName = this.props.cityName
+      const page = this.state.page
       this.loadData()
       const wrapper = this.refs.wrapper
       let timeoutId
@@ -91,22 +94,22 @@ class List extends React.Component {
         const top = wrapper.getBoundingClientRect().bottom
         const windowHeight = window.screen.height
         console.log(top, windowHeight)
-        if (top && top === windowHeight) {
-          console.log('more')
+        if (top && top <= 800) {
+          console.log('more',that.state.data)
 
-          this.setState({
+          that.setState({
             hasMore: true
           })
-          const cityName = this.props.cityName
-          const page = this.state.page
+
+          //   console.log(cityName, page)
 
           const result = getListData(cityName, page)
           result.then(res => {
             return res.json()
           }).then( json => {
-            this.setState({
+            that.setState({
               hasMore: json.hasMore,
-              data: this.state.data.concat(json.data),
+              data: that.state.data.concat(json.data),
               page: page + 1
             })
           })
@@ -125,42 +128,6 @@ class List extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // componentDidMount() {
-    //     // 获取广告数据
-    //     const result = getAdData()
-    //     result.then(res => {
-    //         return res.json()
-    //     }).then(json => {
-    //         // 处理获取的数据
-    //         const data = json
-    //         if (data.length) {
-    //             this.setState({
-    //                 data: data
-    //             })
-    //         }
-    //     }).catch(ex => {
-    //         // 发生错误
-    //         if (__DEV__) {
-    //             console.error('首页广告模块获取数据报错, ', ex.message)
-    //         }
-    //     })
-    // }
 
 }
 
