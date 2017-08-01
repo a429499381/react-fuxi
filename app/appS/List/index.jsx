@@ -37,7 +37,7 @@ class List extends React.Component {
                 }
                 {
                     this.state.hasMore
-                    ? <div >
+                    ? <div className="k15">
                         <a href="javascript:;"   onClick={this.clickHandle01.bind(this)}>more</a>
                     </div>
                     : <div>no more</div>
@@ -89,14 +89,13 @@ class List extends React.Component {
       const page = this.state.page
       this.loadData()
       const wrapper = this.refs.wrapper
+      const wrapper1 = this.refs.wrapper1
       let timeoutId
       function callback() {
         const top = wrapper.getBoundingClientRect().bottom
         const windowHeight = window.screen.height
         console.log(top, windowHeight)
-        if (top && top <= 800) {
-          console.log('more',that.state.data)
-
+        if (top && top <= 850) {
           that.setState({
             hasMore: true
           })
@@ -123,6 +122,7 @@ class List extends React.Component {
 
         timeoutId = setTimeout(callback, 50)
       }.bind(this), false)
+
     }
 
 
