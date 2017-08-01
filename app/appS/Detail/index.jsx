@@ -49,12 +49,26 @@ class Detail extends React.Component {
                                 </div>
                             )
                         })
-                        : <div onClick={this.moreHandle.bind(this)}>加载中。。。</div>
+                        : <div >加载中。。。</div>
                     }
                 </div>
+                <div onClick={this.moreHandle.bind(this)}>more。。。</div>
+
 
             </div>
         )
+    }
+    moreHandle() {
+        const page = 0
+        let id = this.state.id
+        getCommentData(page, id).then(res => {
+            return res.json()
+        }).then(json => {
+            this.setState({
+                comData: this.state.comData.concat(json.data),
+                hasMore: json.hasMore
+            })
+        })
     }
     componentDidMount() {
         let id = this.state.id
@@ -76,17 +90,6 @@ class Detail extends React.Component {
             })
         })
 
-        moreHandle() {
-            const page = 0
-            getCommentData(page, id).then(res => {
-                return res.json()
-            }).then(json => {
-                this.setState({
-                    comData: this.state.comData.concat(json.data),
-                    hasMore: json.hasMore
-                })
-            })
-        }
     }
 }
 
