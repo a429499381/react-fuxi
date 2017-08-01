@@ -14,10 +14,13 @@ class Detail extends React.Component {
         this.state = {
            id: this.props.params.id,
            info: '',
-           comData: []
+           comData: [],
+            hasMore: ''
         }
     }
     render() {
+        const info = this.state.info
+        const itemData = this.state.comData
         return (
             <div>
                 <div className="D_h">
@@ -25,15 +28,28 @@ class Detail extends React.Component {
                     <h2>商家详情</h2>
                 </div>
                 <div className="D_info">
+                    <h1>{info.title}</h1>
+                    <a href="javascript:;">
+                        <img src={info.img} alt=""/>
+                    </a>
+                    <p className="price">{info.price}</p>
+                    <p className="start">{info.star}</p>
+                    <p className="desc">{info.desc}</p>
+                </div>
+
+                <div className="d_comData">
                     {
-                        this.state.info.map((item, index) => {
-                        return (
-                        <div key={index}>
-                            <img src={item.src}/>
-                            <p>{item.desc}</p>
-    `                   </div>
-                        )
+                        itemData.length
+                        ? itemData.map((item, index) => {
+                            return (
+                                <div className="item" key={index}>
+                                    <span className="userName">{item.username}</span>
+                                    <p className="txt">{item.comment}</p>
+                                    <p className="start">{item.star}</p>
+                                </div>
+                            )
                         })
+                        : <div onClick={this.moreHandle.bind(this)}>加载中。。。</div>
                     }
                 </div>
 
@@ -42,6 +58,7 @@ class Detail extends React.Component {
     }
     componentDidMount() {
         let id = this.state.id
+        const page = 0
         getInfoData(id).then(res => {
             return res.json()
         }).then(json => {
@@ -49,6 +66,27 @@ class Detail extends React.Component {
                 info: json
             })
         })
+
+        getCommentData(page, id).then(res => {
+            return res.json()
+        }).then(json => {
+            this.setState({
+                comData: this.state.comData.concat(json.data),
+                hasMore: json.hasMore
+            })
+        })
+
+        moreHandle() {
+            const page = 0
+            getCommentData(page, id).then(res => {
+                return res.json()
+            }).then(json => {
+                this.setState({
+                    comData: this.state.comData.concat(json.data),
+                    hasMore: json.hasMore
+                })
+            })
+        }
     }
 }
 
