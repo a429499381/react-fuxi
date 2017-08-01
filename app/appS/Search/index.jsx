@@ -23,9 +23,13 @@ class Search extends React.Component {
             <div>
                 <a href="#">返回</a>
                 <Input/>
-                <List/>
+                <List category={this.props.params.category}/>
             </div>
         )
+    }
+
+    componentDidMount() {
+        // console.log(this.props.params.category)
     }
 
 

@@ -14,7 +14,8 @@ class List extends React.Component {
         this.state = {
             data: [],
             hasMore: false,
-            page: 0
+            page: 0,
+            category: this.props.category
         }
 
     }
@@ -22,6 +23,7 @@ class List extends React.Component {
         const data = this.state.data
         return (
             <div ref="wrapper">
+                <div>{this.state.category}</div>
                 {
                     this.state.data.length
                     ? data.map((item, index) => {
