@@ -13,20 +13,42 @@ class Detail extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
            id: this.props.params.id,
-           info: [],
+           info: '',
            comData: []
         }
     }
     render() {
         return (
             <div>
-                {this.state.id}
+                <div className="D_h">
+                    <a href="#">返回</a>
+                    <h2>商家详情</h2>
+                </div>
+                <div className="D_info">
+                    {
+                        this.state.info.map((item, index) => {
+                        return (
+                        <div key={index}>
+                            <img src={item.src}/>
+                            <p>{item.desc}</p>
+    `                   </div>
+                        )
+                        })
+                    }
+                </div>
+
             </div>
         )
     }
     componentDidMount() {
         let id = this.state.id
-        getInfoData(id)
+        getInfoData(id).then(res => {
+            return res.json()
+        }).then(json => {
+            this.setState({
+                info: json
+            })
+        })
     }
 }
 
