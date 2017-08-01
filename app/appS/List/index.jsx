@@ -29,7 +29,9 @@ class List extends React.Component {
                     this.state.data.length
                     ? data.map((item, index) => {
                         return (
+                             <Link to={'/detail/' + item.id}>
                                 <Item data={item} key={index}/>
+                             </Link>
                         )})
                     : <div>数据加载中。。。</div>
                 }

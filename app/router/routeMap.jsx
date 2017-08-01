@@ -16,6 +16,7 @@ import City from '../appS/City'
 import User from '../appS/User'
 import Login from '../appS/Login'
 import Search from '../appS/Search'
+import Detail from '../appS/Detail'
 
 // 如果是大型项目，router部分就需要做更加复杂的配置
 // 参见 https://github.com/reactjs/react-router/tree/master/examples/huge-apps
@@ -30,7 +31,7 @@ class RouterMap extends React.Component {
                     <Route path='/Login(/:router)' component={Login}/>
                     <Route path='/User' component={User}/>
                     <Route path='/search/:category(/:keyword)' component={Search}/>
-                    {/*<Route path='/detail/:id' component={Detail}/>*/}
+                    <Route path='/detail/:id' component={Detail}/>
                     {/*<Route path='*' component={NotFound}/>*/}
                 </Route>
             </Router>
