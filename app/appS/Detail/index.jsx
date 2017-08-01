@@ -13,7 +13,7 @@ class Detail extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
            id: this.props.params.id,
-           info: '',
+           info: [],
            comData: [],
             hasMore: ''
         }
@@ -22,8 +22,8 @@ class Detail extends React.Component {
         const info = this.state.info
         const itemData = this.state.comData
         return (
-            <div>
-                <div className="D_h">
+            <div >
+                <div className="D_h" >
                     <a href="#">返回</a>
                     <h2>商家详情</h2>
                 </div>
@@ -32,12 +32,12 @@ class Detail extends React.Component {
                     <a href="javascript:;">
                         <img src={info.img} alt=""/>
                     </a>
-                    <p className="price">{info.price}</p>
+                    <p className="price">{info.price}inf</p>
                     <p className="start">{info.star}</p>
                     <p className="desc">{info.desc}</p>
                 </div>
 
-                <div className="d_comData">
+                <div className="d_comData" ref="scrolls">
                     {
                         itemData.length
                         ? itemData.map((item, index) => {
@@ -60,6 +60,8 @@ class Detail extends React.Component {
     }
     moreHandle() {
         const page = 0
+
+
         let id = this.state.id
         getCommentData(page, id).then(res => {
             return res.json()
@@ -71,7 +73,14 @@ class Detail extends React.Component {
         })
     }
     componentDidMount() {
+        const that = this
+        let timeoutId
         let id = this.state.id
+        let info = this.state.info
+        const scrolls = this.refs.scrolls
+        const top = scrolls.getBoundingClientRect().top
+        const windowHeight = window.screen.height
+        console.log(top, windowHeight)
         const page = 0
         getInfoData(id).then(res => {
             return res.json()
@@ -89,6 +98,29 @@ class Detail extends React.Component {
                 hasMore: json.hasMore
             })
         })
+
+        function scroll() {
+          if (top && top < 700) {
+            getCommentData(page, id).then(res => {
+              return res.json()
+            }).then(json => {
+              that.setState({
+                comData: that.state.comData.concat(json.data),
+                hasMore: json.hasMore
+              })
+            })
+
+          }
+        }
+
+      window.addEventListener('scroll', function () {
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
+
+        timeoutId = setTimeout(scroll, 50)
+      }.bind(this), false)
+
 
     }
 }
