@@ -42,7 +42,7 @@ class Input extends React.Component {
             return
         }
         let code = encodeURIComponent(e.target.value)
-        hashHistory.push(/search/ + code)
+        hashHistory.push('/search/all' + code)
         console.log(code)
 
     }
