@@ -6,7 +6,7 @@ import { Link, hashHistory } from 'react-router'
 
 import './sub/style.less'
 
-import Search from '../Search/index'
+import Input from '../input/index'
 import Category from '../Category/index'
 import Ad from '../Ad/index'
 import List from '../List/index'
@@ -27,7 +27,7 @@ class Home extends React.Component {
                         <a href="#" className="cityName">{this.props.userinfo.cityName}</a>
                     </Link>
                     <div className="search">
-                        <Search/>
+                        <Input/>
                     </div>
                     <Link to="/user">
                         <a href="#" className="user">用户</a>

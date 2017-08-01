@@ -100,7 +100,6 @@ class List extends React.Component {
             hasMore: true
           })
 
-          //   console.log(cityName, page)
 
           const result = getListData(cityName, page)
           result.then(res => {

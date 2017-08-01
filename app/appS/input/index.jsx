@@ -10,22 +10,41 @@ import { CITYNAME } from '../../config/localStoreKey'
 import localStore from '../../util/localStore'
 
 import './sub/style.less'
-import Input from '../input/index'
-import List from '../List/index'
 
-class Search extends React.Component {
+class Input extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.state = {
+            value: ''
+        }
     }
     render() {
         return (
             <div>
-                <a href="#">返回</a>
-                <Input/>
-                <List/>
+                <input type="text"
+                    placeholder="请输入要搜索的关键字"
+                    value= {this.state.value}
+                    onChange={this.ONchane.bind(this)}
+                    onKeyUp={this.ONkeup.bind(this)}
+                />
             </div>
         )
+    }
+    ONchane(e) {
+        this.setState({
+            value: e.target.value
+        })
+    }
+
+    ONkeup(e) {
+        if ( e.keyCode !== 13) {
+            return
+        }
+        let code = encodeURIComponent(e.target.value)
+        hashHistory.push(/search/ + code)
+        console.log(code)
+
     }
 
 
@@ -47,4 +66,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Search)
+)(Input)
