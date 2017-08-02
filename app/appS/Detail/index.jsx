@@ -15,7 +15,8 @@ class Detail extends React.Component {
            id: this.props.params.id,
            info: [],
            comData: [],
-            hasMore: ''
+            hasMore: '',
+            shouC: ''
         }
     }
     render() {
@@ -35,6 +36,14 @@ class Detail extends React.Component {
                     <p className="price">{info.price}inf</p>
                     <p className="start">{info.star}</p>
                     <p className="desc">{info.desc}</p>
+                </div>
+                <div className="buy">
+                    {
+                        this.state.shouC
+                        ? <a href="javascript:;" onClick={this.shouC.bind(this)}>收藏</a>
+                        : <a href="javascript:;" onClick={this.shouC.bind(this)}>取消收藏</a>
+                    }
+                    <a href="javascript:;" onClick={this.buy.bind(this)}>购买</a>
                 </div>
 
                 <div className="d_comData" ref="scrolls">
@@ -58,6 +67,16 @@ class Detail extends React.Component {
             </div>
         )
     }
+    shouC() {
+        this.setState({
+            shouC: !this.state.shouC
+        })
+    }
+
+    buy() {
+
+    }
+
     moreHandle() {
         const page = 0
 
