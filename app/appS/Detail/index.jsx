@@ -27,7 +27,7 @@ class Detail extends React.Component {
                     <a href="#">返回</a>
                     <h2>商家详情</h2>
                 </div>
-                <div className="D_info">
+                <div className="D_info" >
                     <h1>{info.title}</h1>
                     <a href="javascript:;">
                         <img src={info.img} alt=""/>
@@ -37,7 +37,7 @@ class Detail extends React.Component {
                     <p className="desc">{info.desc}</p>
                 </div>
 
-                <div className="d_comData">
+                <div className="d_comData" >
                     {
                         itemData.length
                         ? itemData.map((item, index) => {
@@ -52,7 +52,7 @@ class Detail extends React.Component {
                         : <div >加载中。。。</div>
                     }
                 </div>
-                <div onClick={this.moreHandle.bind(this)}>more。。。</div>
+                <div ref='infoScroll' onClick={this.moreHandle.bind(this)}>more。。。</div>
 
 
             </div>
@@ -72,6 +72,12 @@ class Detail extends React.Component {
     }
     componentDidMount() {
         let id = this.state.id
+        const that = this
+        let timeoutId
+        const infoScroll = this.refs.infoScroll
+        const bottom = infoScroll.getBoundingClientRect().top
+        const windowHeight = window.screen.height
+        console.log(bottom, windowHeight)
         const page = 0
         getInfoData(id).then(res => {
             return res.json()
@@ -81,14 +87,24 @@ class Detail extends React.Component {
             })
         })
 
-        getCommentData(page, id).then(res => {
-            return res.json()
-        }).then(json => {
-            this.setState({
-                comData: this.state.comData.concat(json.data),
-                hasMore: json.hasMore
+        function getCom() {
+            getCommentData(page, id).then(res => {
+                return res.json()
+            }).then(json => {
+                that.setState({
+                    comData: that.state.comData.concat(json.data),
+                    hasMore: json.hasMore
+                })
             })
-        })
+        }
+        getCom()
+
+        window.addEventListener('scroll', function () {
+            if (timeoutId) {
+                clearTimeout(timeoutId)
+            }
+            timeoutId = setTimeout(getCom, 100)
+        }.bind(this), false)
 
     }
 }
