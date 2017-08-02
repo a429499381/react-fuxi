@@ -77,6 +77,17 @@ class Detail extends React.Component {
 
     }
 
+    checkLogin() {
+        const username = this.props.userinfo.username
+        const id = this.state.id
+        if (username) {
+            return true
+        } else {
+            hashHistory.push('/Login/' + encodeURIComponent(id))
+        }
+        return false
+    }
+
     moreHandle() {
         const page = 0
 
