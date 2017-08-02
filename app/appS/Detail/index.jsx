@@ -13,7 +13,7 @@ class Detail extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
            id: this.props.params.id,
-           info: '',
+           info: [],
            comData: [],
             hasMore: ''
         }
@@ -22,22 +22,22 @@ class Detail extends React.Component {
         const info = this.state.info
         const itemData = this.state.comData
         return (
-            <div>
-                <div className="D_h">
+            <div >
+                <div className="D_h" >
                     <a href="#">返回</a>
                     <h2>商家详情</h2>
                 </div>
-                <div className="D_info" >
+                <div className="D_info">
                     <h1>{info.title}</h1>
                     <a href="javascript:;">
                         <img src={info.img} alt=""/>
                     </a>
-                    <p className="price">{info.price}</p>
+                    <p className="price">{info.price}inf</p>
                     <p className="start">{info.star}</p>
                     <p className="desc">{info.desc}</p>
                 </div>
 
-                <div className="d_comData" >
+                <div className="d_comData" ref="scrolls">
                     {
                         itemData.length
                         ? itemData.map((item, index) => {
@@ -52,7 +52,7 @@ class Detail extends React.Component {
                         : <div >加载中。。。</div>
                     }
                 </div>
-                <div ref='infoScroll' onClick={this.moreHandle.bind(this)}>more。。。</div>
+                <div onClick={this.moreHandle.bind(this)}>more。。。</div>
 
 
             </div>
@@ -60,6 +60,8 @@ class Detail extends React.Component {
     }
     moreHandle() {
         const page = 0
+
+
         let id = this.state.id
         getCommentData(page, id).then(res => {
             return res.json()
@@ -71,13 +73,14 @@ class Detail extends React.Component {
         })
     }
     componentDidMount() {
-        let id = this.state.id
         const that = this
         let timeoutId
-        const infoScroll = this.refs.infoScroll
-        const bottom = infoScroll.getBoundingClientRect().top
+        let id = this.state.id
+        let info = this.state.info
+        const scrolls = this.refs.scrolls
+        const top = scrolls.getBoundingClientRect().top
         const windowHeight = window.screen.height
-        console.log(bottom, windowHeight)
+        console.log(top, windowHeight)
         const page = 0
         getInfoData(id).then(res => {
             return res.json()
@@ -87,24 +90,37 @@ class Detail extends React.Component {
             })
         })
 
-        function getCom() {
-            getCommentData(page, id).then(res => {
-                return res.json()
-            }).then(json => {
-                that.setState({
-                    comData: that.state.comData.concat(json.data),
-                    hasMore: json.hasMore
-                })
+        getCommentData(page, id).then(res => {
+            return res.json()
+        }).then(json => {
+            this.setState({
+                comData: this.state.comData.concat(json.data),
+                hasMore: json.hasMore
             })
-        }
-        getCom()
+        })
 
-        window.addEventListener('scroll', function () {
-            if (timeoutId) {
-                clearTimeout(timeoutId)
-            }
-            timeoutId = setTimeout(getCom, 100)
-        }.bind(this), false)
+        function scroll() {
+          if (top && top < 700) {
+            getCommentData(page, id).then(res => {
+              return res.json()
+            }).then(json => {
+              that.setState({
+                comData: that.state.comData.concat(json.data),
+                hasMore: json.hasMore
+              })
+            })
+
+          }
+        }
+
+      window.addEventListener('scroll', function () {
+        if (timeoutId) {
+          clearTimeout(timeoutId)
+        }
+
+        timeoutId = setTimeout(scroll, 50)
+      }.bind(this), false)
+
 
     }
 }
