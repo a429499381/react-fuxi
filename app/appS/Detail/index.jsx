@@ -79,6 +79,7 @@ class Detail extends React.Component {
         let info = this.state.info
         const scrolls = this.refs.scrolls
         const top = scrolls.getBoundingClientRect().top
+        // 获取容器到顶部高度失败
         const windowHeight = window.screen.height
         console.log(top, windowHeight)
         const page = 0
