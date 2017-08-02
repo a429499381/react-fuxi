@@ -6,6 +6,7 @@ import { Link, hashHistory } from 'react-router'
 
 import './sub/style.less'
 import {getCommentData, getInfoData} from "../../fetch/detail/detai"
+import * as storeActiosfile from '../../actions/store'
 
 class Detail extends React.Component {
     constructor(props, context) {
@@ -16,7 +17,7 @@ class Detail extends React.Component {
            info: [],
            comData: [],
             hasMore: '',
-            shouC: ''
+            shouC: false
         }
     }
     render() {
@@ -39,7 +40,7 @@ class Detail extends React.Component {
                 </div>
                 <div className="buy">
                     {
-                        this.state.shouC
+                        !this.state.shouC
                         ? <a href="javascript:;" onClick={this.shouC.bind(this)}>收藏</a>
                         : <a href="javascript:;" onClick={this.shouC.bind(this)}>取消收藏</a>
                     }
@@ -68,13 +69,26 @@ class Detail extends React.Component {
         )
     }
     shouC() {
-        this.setState({
-            shouC: !this.state.shouC
-        })
+        const username = this.props.userinfo.username
+        const id = this.state.id
+        const checkLogin = this.checkLogin()
+        const storeActions = this.props.storeActios
+        if (checkLogin) {
+            if (this.state.shouC ) {
+                storeActions.rm({id:id})
+            } else {
+                storeActions.add({id:id})
+            }
+
+            this.setState({
+                shouC: !this.state.shouC
+            })
+        }
+
     }
 
     buy() {
-
+        const checkLogin = this.checkLogin()
     }
 
     checkLogin() {
@@ -83,15 +97,13 @@ class Detail extends React.Component {
         if (username) {
             return true
         } else {
-            hashHistory.push('/Login/' + encodeURIComponent(id))
+            hashHistory.push('/Login/' + encodeURIComponent('/detail' + id))
         }
         return false
     }
 
     moreHandle() {
         const page = 0
-
-
         let id = this.state.id
         getCommentData(page, id).then(res => {
             return res.json()
@@ -160,12 +172,14 @@ class Detail extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userinfo: state.userinfo
+        userinfo: state.userinfo,
+        store: state.store
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        storeActios: bindActionCreators(storeActiosfile, dispatch)
     }
 }
 export default connect(
