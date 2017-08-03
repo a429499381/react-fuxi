@@ -10,6 +10,7 @@ import { CITYNAME } from '../../config/localStoreKey'
 import localStore from '../../util/localStore'
 
 import './sub/style.less'
+import OrderData from '../OrderData/index'
 
 class User extends React.Component {
     constructor(props, context) {
@@ -18,7 +19,7 @@ class User extends React.Component {
         this.state = {
           OrderData: [],
           Comment: [],
-          commentState: '',
+          commentState: 0,
         }
     }
     render() {
@@ -33,35 +34,14 @@ class User extends React.Component {
                     {this.props.userinfo.username}
                 </p>
 
-                <div className="OrderData">
-                  {
-                      data.map((item, index) => {
-                          return (
-                            <div className="item" key={index} id={item.id}>
-                                <p>{item.title}</p>
-                                <img src={item.img}/>
-                                <p>{item.price}</p>
-                                <div>
-                                  {
-                                      this.state.commentState === 0
-                                        ? <a href="javascript:;">评价</a>
-                                        :   this.state.commentState === 2
-                                          ? <a href="javascript:;">已评价</a>
-                                          : ''
-                                  }
-
-                                </div>
-                            </div>
-                          )
-                      })
-                  }
-                </div>
-
-
+                <OrderData data ={this.state.OrderData} />
 
             </div>
         )
     }
+
+
+
     componentDidMount() {
         const that = this
         let username = localStore.getItem('username')

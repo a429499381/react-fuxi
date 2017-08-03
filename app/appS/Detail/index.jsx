@@ -78,7 +78,7 @@ class Detail extends React.Component {
                 storeActions.rm({id:id})
             } else {
                 storeActions.add({id:id})
-            }
+            }0
 
             this.setState({
                 shouC: !this.state.shouC
