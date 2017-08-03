@@ -45,7 +45,7 @@ class OrderData extends React.Component {
                                     this.state.commentState === 1
                                         ? <div className="textarea">
                                             <textarea ref="txtarea"></textarea>
-                                            <button>提交</button>
+                                            <button onClick={this.subcomHandle.bind(this)}>提交</button>
                                             <button onClick={this.closeHandle.bind(this)}>取消</button>
                                         </div>
                                         : ''
@@ -59,8 +59,16 @@ class OrderData extends React.Component {
             commentState: 0
         })
     }
+    subcomHandle() {
+        const id =  this.props.data.id
+        const txt = this.refs.txtarea.value.trim()
+        const username = this.props.userinfo.username
+        const subcom = this.props.subcom()
+        console.log(id, txt, username, )
+    }
 
     commentStateHandle() {
+
        this.setState({
            commentState: 1
        })
