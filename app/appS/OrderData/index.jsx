@@ -63,8 +63,13 @@ class OrderData extends React.Component {
         const id =  this.props.data.id
         const txt = this.refs.txtarea.value.trim()
         const username = this.props.userinfo.username
-        const subcom = this.props.subcom()
-        console.log(id, txt, username, )
+        const subcom = this.props.subcom
+        if (!txt) {
+            this.setState({
+                commentState: 0
+            })
+        }
+        subcom(id, txt, username)
     }
 
     commentStateHandle() {

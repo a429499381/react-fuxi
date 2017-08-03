@@ -46,8 +46,8 @@ class User extends React.Component {
         )
     }
 
-    subcom() {
-
+    subcom(id, txt, username) {
+      console.log(id, txt, username)
     }
 
 
