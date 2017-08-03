@@ -40,15 +40,13 @@ class SearchHearder extends React.Component {
     }
     // 处理输入内容
     inputTxt(e) {
-        let value = e.target.value
         this.setState({
-            value: value
+            value:  e.target.value
         })
     }
     keyCode(e) {
-        let value = e.target.value
-        if (this.keyCode(value) === 13 ) {
-            hashHistory.push('/Search' + encodeURIComponent(value))
+        if (e.keyCode === 13 ) {
+            hashHistory.push('/Search/' + encodeURIComponent(e.target.value))
         }
     }
 
