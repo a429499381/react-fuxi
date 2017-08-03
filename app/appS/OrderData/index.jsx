@@ -34,13 +34,12 @@ class OrderData extends React.Component {
                                   {
                                       this.state.commentState === 0
                                         ? <a href="javascript:;" onClick={this.commentStateHandle.bind(this)}>评价</a>
-                                        : ''
+                                        :
+                                          this.state.commentState === 2
+                                          ? <a href="javascript:;" >已评价1</a>
+                                          : ''
                                   }
-                                {
-                                    this.state.commentState === 2
-                                    ? <a href="javascript:;" >已评价</a>
-                                    : ''
-                                }
+
                             </div>
                                 {
                                     this.state.commentState === 1
@@ -57,9 +56,8 @@ class OrderData extends React.Component {
     }
     closeHandle() {
         this.setState({
-            commentState: 2
+            commentState: 0
         })
-        console.log(this.state.commentState)
     }
 
     commentStateHandle() {
