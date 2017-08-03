@@ -12,12 +12,16 @@ class SearchHearder extends React.Component {
     render() {
         return (
             <div className="Search">
-                <a href="javascript:;" onClick={this.backCityName.bind(this)}>{this.props.cityName}</a>
+                <a href="javascript:;" onClick={this.backCity.bind(this)}>{this.props.cityName}</a>
             </div>
         )
     }
 
     // 生命周期函数
+
+    backCity() {
+
+    }
 
 
 
