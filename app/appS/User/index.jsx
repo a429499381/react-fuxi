@@ -34,10 +34,20 @@ class User extends React.Component {
                     {this.props.userinfo.username}
                 </p>
 
-                <OrderData data ={this.state.OrderData} />
+                {
+                    data.map((item, index) => {
+                        return (
+                            <OrderData data ={item} key ={index} subcom = {this.subcom.bind(this)} />
+                        )
+                    })
+                }
 
             </div>
         )
+    }
+
+    subcom() {
+
     }
 
 

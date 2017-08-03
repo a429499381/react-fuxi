@@ -21,35 +21,51 @@ class OrderData extends React.Component {
         }
     }
     render() {
-        const data = this.props.data
+        const item = this.props.data
+        const index = this.props.key
         return (
                 <div className="OrderData">
-                  {
-                      data.map((item, index) => {
-                          return (
+
+
                             <div className="item" key={index} id={item.id}>
                                 <p>{item.title}</p>
                                 <img src={item.img}/>
                                 <p>{item.price}</p>
-                                <div>
                                   {
                                       this.state.commentState === 0
                                         ? <a href="javascript:;" onClick={this.commentStateHandle.bind(this)}>评价</a>
-                                        :   this.state.commentState === 2
-                                          ? <a href="javascript:;" onClick={this.commentStateHandle.bind(this)}>已评价</a>
-                                          : ''
+                                        : ''
                                   }
-                                </div>
+                                {
+                                    this.state.commentState === 2
+                                    ? <a href="javascript:;" >已评价</a>
+                                    : ''
+                                }
                             </div>
-                          )
-                      })
-                  }
+                                {
+                                    this.state.commentState === 1
+                                        ? <div className="textarea">
+                                            <textarea ref="txtarea"></textarea>
+                                            <button>提交</button>
+                                            <button onClick={this.closeHandle.bind(this)}>取消</button>
+                                        </div>
+                                        : ''
+                                }
+
                 </div>
         )
     }
+    closeHandle() {
+        this.setState({
+            commentState: 2
+        })
+        console.log(this.state.commentState)
+    }
 
     commentStateHandle() {
-
+       this.setState({
+           commentState: 1
+       })
     }
 
 
