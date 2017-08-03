@@ -13,7 +13,7 @@ class Detail extends React.Component {
     render() {
         return (
             <div className="Home">
-                Home
+                detail
             </div>
         )
     }
