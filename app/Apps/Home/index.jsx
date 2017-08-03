@@ -22,7 +22,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="Home">
-                <SearchHearder cityName ={this.state.cityName} Goto={this.backCityName.bind(this)}/>
+                <SearchHearder cityName ={this.props.userinfo.cityName} Goto={this.backCityName.bind(this)}/>
             </div>
         )
     }
@@ -38,6 +38,9 @@ class Home extends React.Component {
     backCityName(cityName) {
         const userinfo = this.props.userinfo
         userinfo.cityName = cityName
+        this.setState({
+            cityName: cityName
+        })
     }
 
 }
