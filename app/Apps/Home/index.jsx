@@ -4,21 +4,41 @@ import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
+
+import './style.less'
+
+import SearchHearder from '../Com/SearchHearder'
+
+
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
+        this.state = {
+            cityName: ''
+        }
     }
 
     // 渲染页面
     render() {
         return (
             <div className="Home">
-                city
+                <SearchHearder cityName ={this.state.cityName} Goto={this.backCityName.bind(this)}/>
             </div>
         )
     }
 
     // 生命周期函数
+    componentDidMount() {
+        const cityName = this.props.userinfo.cityName
+        this.setState({
+            cityName: cityName
+        })
+    }
+
+    backCityName(cityName) {
+        const userinfo = this.props.userinfo
+        userinfo.cityName = cityName
+    }
 
 }
 
@@ -26,7 +46,7 @@ class Home extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userInfo: state.userInfo
+        userinfo: state.userinfo
     }
 }
 
