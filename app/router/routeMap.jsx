@@ -1,8 +1,8 @@
 import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 
-import App from '../Apps'
-import Home from '../Apps/Home'
+import App from '../Apps/index'
+import Home from '../Apps/Home/index'
 import City from '../Apps/City'
 import Login from '../Apps/Login'
 import User from '../Apps/User'
@@ -19,12 +19,12 @@ class RouterMap extends React.Component {
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home}/>
-                    <Route path='/city' component={City}/>
-                    <Route path='/Login(/:router)' component={Login}/>
-                    <Route path='/User' component={User}/>
-                    <Route path='/search/:category(/:keyword)' component={Search}/>
-                    <Route path='/detail/:id' component={Detail}/>
-                    <Route path='*' component={NotFound}/>
+                    {/*<Route path='/city' component={City}/>*/}
+                    {/*<Route path='/Login(/:router)' component={Login}/>*/}
+                    {/*<Route path='/User' component={User}/>*/}
+                    {/*<Route path='/search/:category(/:keyword)' component={Search}/>*/}
+                    {/*<Route path='/detail/:id' component={Detail}/>*/}
+                    {/*<Route path='*' component={NotFound}/>*/}
                 </Route>
             </Router>
         )

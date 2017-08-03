@@ -5,8 +5,8 @@ import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
 class Home extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor(props, context) {
+        super(props, context)
     }
 
     // 渲染页面
@@ -19,9 +19,7 @@ class Home extends React.Component {
     }
 
     // 生命周期函数
-    componentDidMount() {
 
-    }
 }
 
 // -------------------redux react 绑定--------------------
@@ -40,4 +38,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(App)
+)(Home)
+
