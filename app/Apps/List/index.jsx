@@ -125,13 +125,6 @@ class List extends React.Component {
       this.GetListData(num)
     }
 
-    // 再次输入后更新列表
-  componentDidUpdate() {
-      this.setState({
-        SearchData: [],
-      })
-      this.GetListData()
-    }
 
 
 }
