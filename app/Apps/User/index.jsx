@@ -20,6 +20,11 @@ class User extends React.Component {
 
     // 生命周期函数
     componentDidMount() {
+        const userName = this.props.userinfo.username
+        console.log(userName)
+        if (!userName) {
+            hashHistory.push('/Login/' + encodeURIComponent('user'))
+        }
 
     }
 }
@@ -28,7 +33,7 @@ class User extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userInfo: state.userInfo
+        userinfo: state.userinfo
     }
 }
 
