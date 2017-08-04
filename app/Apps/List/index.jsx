@@ -60,6 +60,14 @@ class List extends React.Component {
 
     // 生命周期函数
     componentDidMount() {
+      const timeoutId = ''
+
+      // 添加滚动 监听事件
+      window.addEventListener('scroll', function() {
+          this.scroll()
+      }.bind(this) ,false)
+
+
         this.setState({
           cityName: this.props.userinfo.cityName
         })
@@ -105,19 +113,14 @@ class List extends React.Component {
 
     // 滚动加载更多
     scroll() {
-      const more = this.refs.more
-      const moreHeight = more.getBoundingClientRect().bottom
-      const windowHeight = window.screen.height
-      const timeoutId
-
-      // 添加滚动 监听事件
-      window.addEventListener('scroll', function callback() {
-        if (timeoutId) { return }
-        timeoutId = setTimeout(this.GetListData(num),50)
-      }.bind(this))
-
-
+    const more = this.refs.more
+    const moreHeight = more.getBoundingClientRect().bottom
+    const windowHeight = window.screen.height
+    console.log(moreHeight, windowHeight)
+    if (moreHeight <= windowHeight) {
+      this.more()
     }
+  }
 }
 
 // -------------------redux react 绑定--------------------
