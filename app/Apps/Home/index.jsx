@@ -10,6 +10,7 @@ import './style.less'
 import HomeHearder from '../Com/HomeHearder'
 import AD from '../Ad'
 import List from '../List'
+import Swiper from '../Swiper'
 
 
 class Home extends React.Component {
@@ -25,6 +26,7 @@ class Home extends React.Component {
         return (
             <div className="Home">
                 <HomeHearder cityName ={this.props.userinfo.cityName} Goto={this.backCityName.bind(this)}/>
+                <Swiper />
                 <AD />
                 <List />
             </div>
