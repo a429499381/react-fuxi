@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
+import { hashHistory } from 'react-router'
 
 // 导入 fetch 组件
 import { getSearchData } from '../../fetch/search/search'
@@ -29,7 +30,7 @@ class List extends React.Component {
                 {
                     data.map((item, index) => {
                         return (
-                          <div className="list_item" onClick ={this.GoDetail.bind(this)} key ={index}>
+                          <div className="list_item" onClick ={this.GoDetail.bind(this)} key ={index} id ={item.id}>
                               <a href="javascript:;" className="item_img">
                                   <img src={item.img} alt=""/>
                               </a>
@@ -47,8 +48,8 @@ class List extends React.Component {
                 <div className="more" ref="more">
                   {
                     this.state.hasMore
-                    ? <div>加载更多...</div>
-                    : <div>没有啦!</div>
+                    ? <div onClick ={this.more.bind(this)}>加载更多...</div>
+                    : <div onClick ={this.more.bind(this)}>没有啦!</div>
                   }
                 </div>
               </div>
@@ -65,7 +66,7 @@ class List extends React.Component {
       this.GetListData()
     }
 
-    GetListData() {
+    GetListData(num) {
         const page = this.state.page
         const cityName = this.state.cityName
         const category = this.props.category
@@ -75,15 +76,46 @@ class List extends React.Component {
         result.then( res => {
             return ( res.json())
         }).then( json => {
-            this.setState({
-              SearchData: json.data,
-              hasMore: json.hasMore
-            })
+            if (num === 2) {
+              this.setState({
+                SearchData: this.state.SearchData.concat(json.data),
+                hasMore: json.hasMore
+              })
+            } else {
+              this.setState({
+                SearchData: json.data,
+                hasMore: json.hasMore
+              })
+            }
+
         })
     }
 
     // 跳转详情页
     GoDetail() {
+        const id = this.props.id | '000'
+        hashHistory.push('/detail/' + encodeURIComponent(id))
+    }
+
+    // 下啦加载更多
+    more() {
+      const num = 2
+      this.GetListData(num)
+    }
+
+    // 滚动加载更多
+    scroll() {
+      const more = this.refs.more
+      const moreHeight = more.getBoundingClientRect().bottom
+      const windowHeight = window.screen.height
+      const timeoutId
+
+      // 添加滚动 监听事件
+      window.addEventListener('scroll', function callback() {
+        if (timeoutId) { return }
+        timeoutId = setTimeout(this.GetListData(num),50)
+      }.bind(this))
+
 
     }
 }

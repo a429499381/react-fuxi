@@ -12,7 +12,7 @@ class Detail extends React.Component {
     // 渲染页面
     render() {
         return (
-            <div className="Home">
+            <div className="Detail">
                 detail
             </div>
         )
