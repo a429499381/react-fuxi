@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
+import { hashHistory } from 'react-router'
+
 class User extends React.Component {
     constructor(props) {
         super(props)
@@ -13,7 +15,7 @@ class User extends React.Component {
     render() {
         return (
             <div className="Home">
-                User
+                User1
             </div>
         )
     }
@@ -21,9 +23,8 @@ class User extends React.Component {
     // 生命周期函数
     componentDidMount() {
         const userName = this.props.userinfo.username
-        console.log(userName)
         if (!userName) {
-            hashHistory.push('/Login/' + encodeURIComponent('user'))
+            hashHistory.push('/Login/' + encodeURIComponent('User'))
         }
 
     }
