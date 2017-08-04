@@ -9,6 +9,7 @@ import './style.less'
 
 import HomeHearder from '../Com/HomeHearder'
 import AD from '../Ad'
+import List from '../List'
 
 
 class Home extends React.Component {
@@ -25,6 +26,7 @@ class Home extends React.Component {
             <div className="Home">
                 <HomeHearder cityName ={this.props.userinfo.cityName} Goto={this.backCityName.bind(this)}/>
                 <AD />
+                <List />
             </div>
         )
     }
