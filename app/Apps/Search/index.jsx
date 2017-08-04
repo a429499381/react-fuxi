@@ -21,7 +21,7 @@ class Search extends React.Component {
                   <Input/>
                   <a href="#"></a>
               </div>
-              <List />
+              <List category = {this.props.params.category}/>
           </div>
 
         )

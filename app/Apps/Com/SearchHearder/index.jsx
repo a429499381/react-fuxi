@@ -15,7 +15,7 @@ class SearchHearder extends React.Component {
         return (
             <div className="Search">
                 <a  href="javascript:;" onClick={this.backCity.bind(this)}>{this.props.cityName}</a>
-                <Input/>
+                <Input />
                 <a href="javascript:;" onClick={this.GoUser.bind(this)}>用户</a>
             </div>
         )
