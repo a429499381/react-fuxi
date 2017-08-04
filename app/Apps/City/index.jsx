@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
+import { hashHistory } from 'react-router'
 
 import './style.less'
 
@@ -22,19 +23,19 @@ class City extends React.Component {
                 <div className='City'>{this.props.userinfo.cityName}</div>
                 <div className="list">
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '武汉')}>武汉</a>
+                       onClick ={this.backCitys.bind(this, '武汉')}>武汉</a>
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '天津')}>天津</a>
+                       onClick ={this.backCitys.bind(this, '天津')}>天津</a>
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '北京')}>北京</a>
+                       onClick ={this.backCitys.bind(this, '北京')}>北京</a>
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '上海')}>上海</a>
+                       onClick ={this.backCitys.bind(this, '上海')}>上海</a>
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '厦门')}>厦门</a>
+                       onClick ={this.backCitys.bind(this, '厦门')}>厦门</a>
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '长沙')}>长沙</a>
+                       onClick ={this.backCitys.bind(this, '长沙')}>长沙</a>
                     <a href="javascript:;"
-                       onClick ={this.backCity.bind(this, '湖南')}>湖南</a>
+                       onClick ={this.backCitys.bind(this, '湖南')}>湖南</a>
                 </div>
             </div>
         )
@@ -46,9 +47,16 @@ class City extends React.Component {
     }
 
     // 城市更新
-    backCity() {
+    backCitys(cityName) {
+          const userinfo = this.props.userinfo
+      userinfo.cityName = cityName
+      this.props.userInfoActions.update(userinfo)
 
+      // 返回
+      hashHistory.push('/')
     }
+
+
 }
 
 // -------------------redux react 绑定--------------------
