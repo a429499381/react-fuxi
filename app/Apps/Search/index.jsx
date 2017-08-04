@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
+
+import Input from '../Com/Input'
+
 class Search extends React.Component {
     constructor(props) {
         super(props)
@@ -12,15 +15,21 @@ class Search extends React.Component {
     // 渲染页面
     render() {
         return (
-            <div className="Home">
-                Search
-            </div>
+          <div>
+              <div className="Search">
+                  <a href="#">返回</a>
+                  <Input/>
+                  <a href="#"></a>
+              </div>
+
+          </div>
+
         )
     }
 
     // 生命周期函数
     componentDidMount() {
-
+        const cityName = this.props.userinfo.cityName
     }
 }
 
@@ -28,7 +37,7 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userInfo: state.userInfo
+        userinfo: state.userinfo
     }
 }
 

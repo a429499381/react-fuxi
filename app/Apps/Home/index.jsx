@@ -7,7 +7,7 @@ import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
 import './style.less'
 
-import SearchHearder from '../Com/SearchHearder'
+import HomeHearder from '../Com/SearchHearder'
 
 
 class Home extends React.Component {
@@ -22,7 +22,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="Home">
-                <SearchHearder cityName ={this.props.userinfo.cityName} Goto={this.backCityName.bind(this)}/>
+                <HomeHearder cityName ={this.props.userinfo.cityName} Goto={this.backCityName.bind(this)}/>
             </div>
         )
     }
