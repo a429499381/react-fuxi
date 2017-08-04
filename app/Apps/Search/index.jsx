@@ -31,6 +31,7 @@ class Search extends React.Component {
     componentDidMount() {
         const cityName = this.props.userinfo.cityName
     }
+
 }
 
 // -------------------redux react 绑定--------------------

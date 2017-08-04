@@ -40,6 +40,7 @@ class Input extends React.Component {
           hashHistory.push('/Search/' + encodeURIComponent(e.target.value))
         }
       }
+
 }
 
 export default Input

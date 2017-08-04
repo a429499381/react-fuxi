@@ -26,6 +26,7 @@ class List extends React.Component {
         const data = this.state.SearchData
         return (
           <div>
+             <div>{this.props.category}</div>
               <div className="lists">
                 {
                     data.map((item, index) => {
@@ -92,7 +93,7 @@ class List extends React.Component {
         const cityName = this.state.cityName
         const category = this.props.category
         let keyword = 'all'
-      const result = getSearchData( page, cityName, category, keyword,)
+      const result = getSearchData( page, category, cityName,  keyword,)
 
         result.then( res => {
             return ( res.json())
@@ -122,6 +123,14 @@ class List extends React.Component {
     more() {
       const num = 2
       this.GetListData(num)
+    }
+
+    // 再次输入后更新列表
+  componentDidUpdate() {
+      this.setState({
+        SearchData: [],
+      })
+      this.GetListData()
     }
 
 
