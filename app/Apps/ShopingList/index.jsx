@@ -23,17 +23,19 @@ class User extends React.Component {
         return (
            <div className="ShopingList">
               {
-                  data.map((item, index) => {
+                data
+                ? data.map((item, index) => {
                       return (
                         <div className="item" key ={index} id = {item.id}>
                             <h3>{item.title}</h3>
-                            <img src={item.img}></img>
                             <p>{item.commentState}</p>
                             <p>{item.count}</p>
                             <p className="price">单价:{item.price}</p>
                         </div>
                       )
                   })
+
+                : <div>没有更多数据</div>
               }
             </div>
 
