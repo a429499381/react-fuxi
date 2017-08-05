@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
-import { hashHistory } from 'react-router'
+import { Link, hashHistory } from 'react-router'
 
 // 导入 fetch 组件
 import { getSearchData } from '../../fetch/search/search'
@@ -31,18 +31,20 @@ class List extends React.Component {
                 {
                     data.map((item, index) => {
                         return (
-                          <div className="list_item" onClick ={this.GoDetail.bind(this)} key ={index} id ={item.id}>
-                              <a href="javascript:;" className="item_img">
-                                  <img src={item.img} alt=""/>
-                              </a>
-                              <div className="container">
-                                  <h3>{item.title}</h3>
-                                  <p className="mumber">{item.mumber}</p>
-                                  <p className="price">{item.price}</p>
-                                  <p className="subTitle">{item.subTitle}</p>
-                                  <p className="distance">{item.distance}</p>
-                              </div>
-                          </div>
+                         <Link to={'/detail/' + item.id} key ={index}>
+                            <div className="list_item" onClick ={this.GoDetail.bind(this)} key ={index} id ={item.id}>
+                                <a href="javascript:;" className="item_img">
+                                    <img src={item.img} alt=""/>
+                                </a>
+                                <div className="container">
+                                    <h3>{item.title}</h3>
+                                    <p className="mumber">{item.mumber}</p>
+                                    <p className="price">{item.price}</p>
+                                    <p className="subTitle">{item.subTitle}</p>
+                                    <p className="distance">{item.distance}</p>
+                                </div>
+                            </div>
+                          </Link>
                         )
                     })
                 }
