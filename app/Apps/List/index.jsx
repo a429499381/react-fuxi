@@ -88,6 +88,41 @@ class List extends React.Component {
       this.GetListData()
     }
 
+    // 处理重新搜索
+    // componentDidUpdate(prevProps, prevState) {
+    //     const keyword = this.props.keyword
+    //     const category = this.props.category
+    //
+    //     // 搜索条件完全相等时，忽略。重要！！！
+    //     if (keyword === prevProps.keyword && category === prevProps.category) {
+    //         return
+    //     }
+    //
+    //     // 重置 state
+    //     this.setState({
+    //         SearchData: [],
+    //     })
+    //
+    //     // 重新加载数据
+    //     this.GetListData()
+    // }
+
+    componentDidUpdate(prevProps, prevState) {
+        const Category = this.props.category
+        const keyword = this.props.keyword
+
+        if (Category === prevProps.category && keyword === prevProps.keyword) {
+            return
+        }
+
+        this.setState({
+            SearchData: [],
+        })
+
+        this.GetListData()
+        console.log('Update')
+    }
+
     GetListData(num) {
         const page = this.state.page
         const cityName = this.state.cityName

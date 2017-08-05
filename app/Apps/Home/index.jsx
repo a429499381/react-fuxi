@@ -7,7 +7,7 @@ import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
 import './style.less'
 
-import HomeHearder from '../Com/HomeHearder'
+import HomeHearder from '../Com/HomeHearder/'
 import AD from '../Ad'
 import List from '../List'
 import Swiper from '../Swiper'
