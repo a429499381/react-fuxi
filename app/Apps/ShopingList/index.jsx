@@ -47,7 +47,6 @@ class User extends React.Component {
     // 生命周期函数
     componentDidMount() {
       const username = this.props.userinfo.username
-      console.log(username)
       if (username) {
           this.GetData()
       }
@@ -61,7 +60,6 @@ class User extends React.Component {
         this.setState({
           data: json
         })
-        console.log(json)
       })
     }
 
