@@ -42,7 +42,7 @@ class User extends React.Component {
 
 
         this.props.userInfoActions.update(userinfo)
-        hashHistory.push('/')
+        hashHistory.push('/Login/' + 'User')
     }
 }
 
