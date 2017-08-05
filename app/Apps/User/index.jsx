@@ -14,19 +14,35 @@ class User extends React.Component {
     // 渲染页面
     render() {
         return (
-            <div className="Home">
-                User1
+            <div className="User">
+                <div>{this.props.userinfo.username}</div>
+                <div>{this.props.userinfo.cityName}</div>
+
+                <a href="javascript:;" onClick={this.closeUser.bind(this)}>退出</a>
             </div>
         )
     }
 
     // 生命周期函数
     componentDidMount() {
-        const userName = this.props.userinfo.username
-        if (!userName) {
+        const username = this.props.userinfo.username
+        if (!username) {
             hashHistory.push('/Login/' + encodeURIComponent('User'))
         }
 
+    }
+
+    // 退出用户
+    closeUser() {
+        const userinfo = this.props.userinfo
+        userinfo.username = ''
+        userinfo.password = ''
+        localStorage.setItem('username', '')
+        localStorage.setItem('password', '')
+
+
+        this.props.userInfoActions.update(userinfo)
+        hashHistory.push('/')
     }
 }
 

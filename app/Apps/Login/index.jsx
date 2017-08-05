@@ -5,6 +5,7 @@ import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
 import { hashHistory} from 'react-router'
+import localStore from "../../util/localStore";
 
 class Login extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class Login extends React.Component {
         return (
             <div className="Login">
                <div className="LoginHeader">
-                   <a href="javascript:;">返回</a>
+                   <a href="#">返回</a>
                    <h2>登陆页</h2>
                </div>
                <div className="user">
@@ -67,10 +68,25 @@ class Login extends React.Component {
 
       // 登陆流程
       Submit() {
+          const router = this.props.params.router
+          const userinfo = this.props.userinfo
+          userinfo.username = this.state.username
+          userinfo.password = this.state.password
+          this.props.userInfoActions.update(userinfo)
+
+          localStore.setItem('username', this.props.userinfo.username)
+          localStore.setItem('password', this.props.userinfo.password)
+
+          hashHistory.push('/' + router)
 
       }
       Close() {
-
+        const router = this.props.params.router
+        if (router === 'User'){
+            hashHistory.push('/')
+        } else {
+            this.GotoBack()
+        }
       }
 }
 
@@ -78,7 +94,7 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        userInfo: state.userInfo
+        userinfo: state.userinfo
     }
 }
 
