@@ -6,11 +6,13 @@ import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
 import { getInfoData, getCommentData} from "../../fetch/detail/detai"
 
+import Info from './subCom/Info'
+
 class Detail extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            InfoData: [],
+            InfoData: '',
             ComDaa: [],
             page: 0,
             ComMore: false,
@@ -21,9 +23,7 @@ class Detail extends React.Component {
     render() {
         return (
             <div className="Detail">
-                {
-                    this.props.params.id
-                }
+                <Info data = {this.state.InfoData}/>
             </div>
         )
     }
@@ -49,6 +49,7 @@ class Detail extends React.Component {
             this.setState({
                 InfoData: json
             })
+            console.log(json)
         })
     }
 
