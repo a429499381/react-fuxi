@@ -3,8 +3,8 @@ import React from 'react'
 import './style.less'
 
 class Info extends React.Component {
-    constructor(props) {
-        super(props)
+    constructor(props, context) {
+        super(props, context)
     }
 
     // 渲染页面
@@ -12,6 +12,9 @@ class Info extends React.Component {
         const data = this.props.data
         return (
             <div className="Info">
+                {
+                    data.length
+                }
                 <div className="Hearder">
                     <a href="#">返回</a>
                     <h2>商户详情</h2>

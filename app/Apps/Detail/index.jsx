@@ -12,7 +12,7 @@ class Detail extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            InfoData: '',
+            InfoData: false,
             ComDaa: [],
             page: 0,
             ComMore: false,
@@ -23,7 +23,11 @@ class Detail extends React.Component {
     render() {
         return (
             <div className="Detail">
-                <Info data = {this.state.InfoData}/>
+                {
+                    this.state.InfoData
+                        ? <Info data={this.state.InfoData}/>
+                        : ''
+                }
             </div>
         )
     }
@@ -49,7 +53,7 @@ class Detail extends React.Component {
             this.setState({
                 InfoData: json
             })
-            console.log(json)
+            console.log(json.title)
         })
     }
 
