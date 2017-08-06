@@ -41,7 +41,7 @@ class Detail extends React.Component {
         this.getInfo(id)
 
         // 获取评价数据
-        this.getCom(page, id)
+        // this.getCom(page, id)
     }
 
     // 处理 info 数据
@@ -53,7 +53,7 @@ class Detail extends React.Component {
             this.setState({
                 InfoData: json
             })
-            console.log(json.title)
+            console.log(json)
         })
     }
 
