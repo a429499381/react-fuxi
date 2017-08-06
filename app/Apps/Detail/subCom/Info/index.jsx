@@ -13,8 +13,8 @@ class Info extends React.Component {
         return (
             <div>
                 <div className="Hearder">
-                    <a href="#">返回</a>
-                    <h2>商户详情   text-align: justify 布局无效</h2>
+                    <a href="#">返回</a>&nbsp;
+                    <h2>商户详情</h2>&nbsp;
                 </div>
                 <div className="top">
                     <img src="" alt=""/>
