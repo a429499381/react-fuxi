@@ -23,7 +23,7 @@ class User extends React.Component {
         return (
            <div className="ShopingList">
               {
-                data
+                data.length
                 ? data.map((item, index) => {
                       return (
                         <div className="item" key ={index} id = {item.id}>
@@ -34,7 +34,6 @@ class User extends React.Component {
                         </div>
                       )
                   })
-
                 : <div>没有更多数据</div>
               }
             </div>
