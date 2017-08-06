@@ -7,13 +7,14 @@ import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 import { getInfoData, getCommentData} from "../../fetch/detail/detai"
 
 import Info from './subCom/Info'
+import Comment from './subCom/Comment'
 
 class Detail extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             InfoData: false,
-            ComDaa: [],
+            ComData: false,
             page: 0,
             ComMore: false,
         }
@@ -28,6 +29,16 @@ class Detail extends React.Component {
                         ? <Info data={this.state.InfoData}/>
                         : ''
                 }
+                {
+                    this.state.ComData
+                        ?
+                            this.state.ComData.map((item, index) => {
+                                return (
+                                    <Comment data={item} key ={index}/>
+                                )
+                            })
+                        : '2'
+                }
             </div>
         )
     }
@@ -41,7 +52,7 @@ class Detail extends React.Component {
         this.getInfo(id)
 
         // 获取评价数据
-        // this.getCom(page, id)
+        this.getCom(page, id)
     }
 
     // 处理 info 数据
@@ -64,10 +75,10 @@ class Detail extends React.Component {
             return ( res.json())
         }).then( json => {
             this.setState({
-                InfoData: json.data,
+                ComData: json.data,
                 hasMore: json.hasMore,
             })
-
+            console.log(json.data)
         })
     }
 }
