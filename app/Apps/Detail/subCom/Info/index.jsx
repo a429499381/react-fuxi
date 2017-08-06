@@ -14,14 +14,15 @@ class Info extends React.Component {
             <div>
                 <div className="Hearder">
                     <a href="#">返回</a>
-                    <h2>商户详情</h2>
+                    <h2>商户详情   text-align: justify 布局无效</h2>
                 </div>
                 <div className="top">
                     <img src="" alt=""/>
                     <p className="title">{data.title}</p>
+                    <p dangerouslySetInnerHTML={{__html: data.desc}}></p>
                     <div className="com">
                         <span className="start">5</span>
-                        <p dangerouslySetInnerHTML={{__html: data.desc}}></p>
+
                         <span className="pl">288条</span>
                         <span className="price">88/</span>
                     </div>
@@ -33,7 +34,7 @@ class Info extends React.Component {
                     </p>
                     <p className="address">
                         <span className="txt">双井北街与南街交汇出</span>
-                        <a href="javascript:;">></a>
+                        <a className="back" href="javascript:;">></a>
                     </p>
                     <p className="phone">
                         <span className="numb">40121123456</span>
