@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
-import List from '../List'
+import List from './subCom/List'
 import Input from '../Com/Input'
 
 class Search extends React.Component {
