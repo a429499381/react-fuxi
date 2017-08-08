@@ -25,10 +25,24 @@ class Home extends React.Component {
     // 生命周期函数
     componentDidMount() {
        console.log('22')
+
+        // 点击事件注册
+        window.addEventListener('click', this.callback, false)
     }
     componentWillUnmount() {
         console.log('Umunt')
+
+        // 移除点击事件
+        window.removeEventListener('click', this.callback, false)
     }
+
+    // 点击事件函数
+    callback() {
+        console.log('Click')
+    }
+
+
+    //  跳转城市页面
     GoCity() {
         hashHistory.push('/City')
     }
@@ -40,7 +54,7 @@ class Home extends React.Component {
             <div className="Home">
                     <a href="javascript:;" onClick={this.GoCity.bind(this)}>城市</a>
 
-                 <div className="list">
+                 <div className="list" ref="list">
                      11
                  </div>
             </div>
