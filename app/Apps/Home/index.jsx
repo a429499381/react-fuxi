@@ -27,18 +27,27 @@ class Home extends React.Component {
        console.log('22')
 
         // 点击事件注册
-        window.addEventListener('click', this.callback, false)
+        window.addEventListener('scroll', this.callback, false)
     }
     componentWillUnmount() {
         console.log('Umunt')
 
         // 移除点击事件
-        window.removeEventListener('click', this.callback, false)
+        window.removeEventListener('scroll', this.callback, false)
     }
 
     // 点击事件函数
     callback() {
         console.log('Click')
+
+        const list = this.refs.list
+        const listHeight = list.getBoundingClientRect().top
+        console.log(listHeight)
+    }
+
+    //  滚动获取高度
+    scroll() {
+
     }
 
 
@@ -55,7 +64,21 @@ class Home extends React.Component {
                     <a href="javascript:;" onClick={this.GoCity.bind(this)}>城市</a>
 
                  <div className="list" ref="list">
-                     11
+                     <p className="item">1</p><p className="item">2</p><p className="item">3</p><p className="item">
+                     4</p><p className="item">5</p><p className="item">6</p><p className="item">7</p><p
+                     className="item">8</p><p className="item">9</p><p className="item">10</p><p className="item">11</p>
+                     <p className="item">12</p><p className="item">13</p><p className="item">14</p><p className="item">
+                     15</p><p className="item">16</p><p className="item">17</p><p className="item">18</p><p
+                     className="item">19</p><p className="item">20</p><p className="item">21</p><p className="item">
+                     22</p><p className="item">23</p><p className="item">24</p><p className="item">25</p><p
+                     className="item">26</p><p className="item">27</p><p className="item">28</p><p className="item">
+                     29</p><p className="item">30</p><p className="item">31</p><p className="item">32</p><p
+                     className="item">33</p><p className="item">34</p><p className="item">35</p><p className="item">
+                     36</p><p className="item">37</p><p className="item">38</p><p className="item">39</p><p
+                     className="item">40</p><p className="item">41</p><p className="item">42</p><p className="item">
+                     43</p><p className="item">44</p><p className="item">45</p><p className="item">46</p><p
+                     className="item">47</p><p className="item">48</p><p className="item">49</p><p className="item">
+                     50</p>
                  </div>
             </div>
         )
