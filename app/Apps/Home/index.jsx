@@ -51,10 +51,7 @@ class Home extends React.Component {
         console.log(that)
         console.log('Scroll')
 
-        // 获取高度
-        // const that = this
-        // this.scroll(that)
-
+        const list = this.refs.list
     }
 
     //  滚动获取高度 函数
