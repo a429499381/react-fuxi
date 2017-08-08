@@ -24,30 +24,34 @@ class Home extends React.Component {
 
     // 生命周期函数
     componentDidMount() {
-       console.log('22')
+       console.log('首页渲染完毕')
 
         // 点击事件注册
-        window.addEventListener('scroll', this.callback, false)
+        const that = this
+        const callback = this.callback
+        window.addEventListener('scroll', callback, false)
     }
     componentWillUnmount() {
-        console.log('Umunt')
+        console.log('首页卸载')
 
         // 移除点击事件
-        window.removeEventListener('scroll', this.callback, false)
+        window.removeEventListener('scroll',callback, false)
     }
 
     // 点击事件函数
     callback() {
-        console.log('Click')
+        console.log('Scroll')
 
-        const list = this.refs.list
-        const listHeight = list.getBoundingClientRect().top
-        console.log(listHeight)
+        // 跳用获取高度
+        this.scroll(that)
+
     }
 
     //  滚动获取高度
-    scroll() {
-
+    scroll(that) {
+        const list = that.refs.list
+        const listHeight = list.getBoundingClientRect().bottom
+        console.log(listHeight)
     }
 
 
