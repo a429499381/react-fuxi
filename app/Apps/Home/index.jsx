@@ -54,14 +54,6 @@ class Home extends React.Component {
         const list = this.refs.list
     }
 
-    //  滚动获取高度 函数
-    scroll(that) {
-        console.log(that)
-        // const list = that.refs.list
-        // const listHeight = list.getBoundingClientRect().bottom
-        // console.log(listHeight)
-    }
-
 
     //  跳转城市页面
     GoCity() {
