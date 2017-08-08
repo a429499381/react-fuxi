@@ -28,10 +28,13 @@ class Home extends React.Component {
 
         // 点击事件注册
         const that = this
+        console.log(that)
         const callback = this.callback
         window.addEventListener('scroll', callback, false)
     }
-    componentWillUnmount() {
+
+    // 生命周期 卸载
+    componentWillUnmount(callback) {
         console.log('首页卸载')
 
         // 移除点击事件
@@ -39,19 +42,22 @@ class Home extends React.Component {
     }
 
     // 点击事件函数
-    callback() {
+    callback(that) {
         console.log('Scroll')
+        console.log( that)
 
-        // 跳用获取高度
-        this.scroll(that)
+        // 获取高度
+        // const that = this
+        // this.scroll(that)
 
     }
 
-    //  滚动获取高度
+    //  滚动获取高度 函数
     scroll(that) {
-        const list = that.refs.list
-        const listHeight = list.getBoundingClientRect().bottom
-        console.log(listHeight)
+        console.log(that)
+        // const list = that.refs.list
+        // const listHeight = list.getBoundingClientRect().bottom
+        // console.log(listHeight)
     }
 
 
