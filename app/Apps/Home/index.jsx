@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { CITYNAME} from "../../config/localStoreKey"
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
+import { Link, hashHistory } from 'react-router'
 
 import './style.less'
 
@@ -21,33 +22,35 @@ class Home extends React.Component {
         }
     }
 
+    // 生命周期函数
+    componentDidMount() {
+       console.log('22')
+    }
+    componentWillUnmount() {
+        console.log('Umunt')
+    }
+    GoCity() {
+        hashHistory.push('/City')
+    }
+
+
     // 渲染页面
     render() {
         return (
             <div className="Home">
-                <HomeHearder cityName ={this.props.userinfo.cityName} Goto={this.backCityName.bind(this)}/>
-                <Swiper />
-                <AD />
-                <List />
+                    <a href="javascript:;" onClick={this.GoCity.bind(this)}>城市</a>
+
+                 <div className="list">
+                     11
+                 </div>
             </div>
         )
     }
 
-    // 生命周期函数
-    componentDidMount() {
-        const cityName = this.props.userinfo.cityName
-        this.setState({
-            cityName: cityName
-        })
-    }
 
-    backCityName(cityName) {
-        const userinfo = this.props.userinfo
-        userinfo.cityName = cityName
-        this.setState({
-            cityName: cityName
-        })
-    }
+
+
+
 
 
 
