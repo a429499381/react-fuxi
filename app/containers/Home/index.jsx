@@ -29,7 +29,12 @@ class Home extends React.Component {
                 <div className="list">
                   {
                     this.props.todolist.length
-                    ? <div data = { this.props.todolist} ></div>
+                    ?
+                      this.props.todolist.map((item, index) => {
+                         return (
+                           <div key={index} >{item}</div>
+                         )
+                      })
                     : '没有记录'
                   }
                 </div>
