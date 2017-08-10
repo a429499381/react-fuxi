@@ -24,33 +24,39 @@ class Home extends React.Component {
                 <input type="text" placeholder="输入要待办的事情"
                     onChange = { this.InputHandle.bind(this)}
                     onKeyUp = { this.KeyCode.bind(this)}
-                       value = { this.state.value }
-                />
+                    value = { this.state.value }
+                />{this.state.value}
                 <div className="list">
-                  this.props.todolist
-                  ?
-                    this.props.todolist.map((item, index) => {
-                      return <p key={index} >{item}</p>
-                    })
-                  : ''
+                  {
+                    this.props.todolist.length
+                    ? <div data = { this.props.todolist} ></div>
+                    : '没有记录'
+                  }
                 </div>
               </div>
 
-                <HomeHeader cityName={this.props.userinfo.cityName}/>
-                <Category/>
-                <div style={{height: '15px'}}>{/* 分割线 */}</div>
-                <Ad/>
-                <List cityName={this.props.userinfo.cityName}/>
+                {/*<HomeHeader cityName={this.props.userinfo.cityName}/>*/}
+                {/*<Category/>*/}
+                {/*<div style={{height: '15px'}}>/!* 分割线 *!/</div>*/}
+                {/*<Ad/>*/}
+                {/*<List cityName={this.props.userinfo.cityName}/>*/}
             </div>
         )
     }
 
-    InputHandle() {
-
+    InputHandle(e) {
+      const value = e.target.value
+      this.setState({
+        value: value
+      })
     }
 
-    KeyCode() {
-
+    KeyCode(e) {
+       if (e.keyCode !== 13) {
+         return
+       }
+       this.props.actionsTodoList.add(e.target.value)
+       this.setState({ value: ''})
     }
 }
 
