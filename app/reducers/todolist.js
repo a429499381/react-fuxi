@@ -2,21 +2,21 @@ import * as actionTypes from '../constants/todolist'
 
 const initialState = []
 
-export default function userinfo (state = initialState, action) {
-    switch (action.type) {
+export default function userinfo (state = initialState, actionsTodoList) {
+    switch (actionsTodoList.type) {
         case actionTypes.TODOLIST_UPDATE:
-            return action.data
+            return actionsTodoList.data
         case actionTypes.TODOLIST_ADD:
               state.unshift(
                 {
-                  id: Math.random() +1,
-                  component: action.data.component,
-                  text: action.data.text
+                  id: setTimeout(() =>{}),
+                  component: actionsTodoList.data.component,
+                  text: actionsTodoList.data.text
               })
               return state
         case actionTypes.TODOLIST_RM:
                state = state.filter(item => {
-                   return item.id == action.data
+                   return parseInt(item.id) !== parseInt(actionsTodoList.id)
                })
         default:
             return state

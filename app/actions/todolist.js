@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/todolist'
 const num = 10
 const com = {
-    id: Math.random(),
+    id: 0,
     component: false,
 }
 
@@ -26,6 +26,6 @@ export function add(item) {
 export function rm(id) {
     return {
         type: actionTypes.TODOLIST_RM,
-        data: id
+        id
     }
 }
