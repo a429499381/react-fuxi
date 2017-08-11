@@ -23,9 +23,9 @@ export function add(item) {
     }
 }
 
-export function rm(item) {
+export function rm(id) {
     return {
         type: actionTypes.TODOLIST_RM,
-        data: item
+        data: id
     }
 }

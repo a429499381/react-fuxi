@@ -49,7 +49,9 @@ class Home extends React.Component {
         )
     }
 
-    DelHandle() {
+    DelHandle(e) {
+        const id = e.target.id
+        this.props.actionsTodoList.rm(id)
 
     }
 

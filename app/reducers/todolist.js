@@ -15,11 +15,12 @@ export default function userinfo (state = initialState, action) {
               })
               return state
         case actionTypes.TODOLIST_RM:
-            return state.filter(item => {
+            const MoreState = state.filter(item => {
                 if (item.id !== action.data.id) {
                     return item
                 }
             })
+            return MoreState
         default:
             return state
     }
