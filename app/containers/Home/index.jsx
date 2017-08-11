@@ -32,7 +32,7 @@ class Home extends React.Component {
                     ?
                       this.props.todolist.map((item, index) => {
                          return (
-                           <div key={index} >{item}</div>
+                           <div key={item.id} id = {item.id} className={item.component} onClick={this.DelHandle.bind(this)}>{item.text}</div>
                          )
                       })
                     : '没有记录'
@@ -47,6 +47,10 @@ class Home extends React.Component {
                 {/*<List cityName={this.props.userinfo.cityName}/>*/}
             </div>
         )
+    }
+
+    DelHandle() {
+
     }
 
     InputHandle(e) {
