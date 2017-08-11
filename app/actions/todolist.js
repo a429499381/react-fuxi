@@ -1,4 +1,9 @@
 import * as actionTypes from '../constants/todolist'
+const num = 10
+const com = {
+    id: Math.random(),
+    component: false,
+}
 
 export function update(data) {
     return {
@@ -10,7 +15,11 @@ export function update(data) {
 export function add(item) {
     return {
         type: actionTypes.TODOLIST_ADD,
-        data: item
+        data: {
+            id: com.id,
+            component: com.component,
+            text: item
+        }
     }
 }
 

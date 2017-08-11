@@ -7,8 +7,13 @@ export default function userinfo (state = initialState, action) {
         case actionTypes.TODOLIST_UPDATE:
             return action.data
         case actionTypes.TODOLIST_ADD:
-            state.unshift(action.data)
-            return state
+              state.unshift(
+                {
+                  id: Math.random() +1,
+                  component: action.data.component,
+                  text: action.data.text
+              })
+              return state
         case actionTypes.TODOLIST_RM:
             return state.filter(item => {
                 if (item.id !== action.data.id) {
